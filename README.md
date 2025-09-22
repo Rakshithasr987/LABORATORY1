@@ -21,8 +21,6 @@ An NLP-based multi-channel customer support system that automates:
 - Retrieval-Augmented Generation (RAG) with vector search
 - Human-in-the-loop escalation for complex queries
 
-Achieved **F1-score of 0.86** on multi-channel customer support data (chat, email, social media).
-
 ## Results & Example Output
 - Intent classifier: precision/recall/F1 per class, macro & micro F1. Target avg F1 ≈ 0.86.
 - Sentiment: accuracy on labeled set.
