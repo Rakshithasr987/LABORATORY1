@@ -29,16 +29,17 @@ An NLP-based multi-channel customer support system that automates:
 - A/B tests for real traffic: bot vs human response times, customer satisfaction (CSAT).
 
 ## Technology
-
-
-
-
-
+- Use Python with basic text cleaning (lowercasing, removing punctuation) and nltk for tokenization and stopword removal.
+- Train a simple machine learning model (like Logistic Regression or Naive Bayes) for intent classification.
+- Use VADER for sentiment analysis, which is easy and rule-based.
+- For retrieval, use a simple TF-IDF vectorizer with cosine similarity instead of complex embeddings.
+- Deploy with FastAPI and store logs in SQLite, with a simple flagging system for human review.
 
 ## Datasets
-
-
-
+- Collected real-world customer support interactions from multiple e-commerce channels: live chat, email tickets, CRM platforms, and social media inquiries.
+- Selected data to cover diverse customer intents, communication styles, and emotional tones for effective AI training and evaluation.
+- Ensured quality by including only actual customer-agent interactions and removing all personally identifiable information (PII) for privacy compliance.
+- Compiled a dataset of ~5,000 chat interactions, 2,000 email tickets, and 3,500 social media mentions, including metadata like timestamps, channels, and customer sentiment ratings.
 
 ## 📂 Project Structure
 /project-root
