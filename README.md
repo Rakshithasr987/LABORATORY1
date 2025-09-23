@@ -3,7 +3,6 @@
 AI-driven system to improve online customer support using NLP. Features sentiment-aware responses, contextual retrieval, and human-in-the-loop escalation. Scalable, modular, and adaptable for real-world deployment.
 
 # Abstract
-
 This repository contains the end-to-end implementation for the Master's thesis project: **"Improving the Quality of Online Customer Support Using Artificial Intelligence"**
 
 ## Key Features
