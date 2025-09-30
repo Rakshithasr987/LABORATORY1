@@ -5,6 +5,10 @@ AI-driven system to improve online customer support using NLP. Features sentimen
 # Abstract
 This repository contains the end-to-end implementation for the Master's thesis project: **"Improving the Quality of Online Customer Support Using Artificial Intelligence"**
 
+# End-to-End process
+Input: Customer interaction data (chat logs, FAQs, emails, e-commerce queries)
+Output: AI-powered responses with contextual awareness, personalization, and performance metrics
+
 ## Key Features
 - Intent Classification: Fine-tuned BERT model
 - Sentiment Analysis: VADER + domain-tuned classifier
@@ -13,6 +17,14 @@ This repository contains the end-to-end implementation for the Master's thesis p
 - Human-in-the-Loop Escalation: For low-confidence or sensitive queries
 - Scalable Deployment: Docker + Kubernetes-ready
 
+## Pipeline Steps
+- Identify & Collect Data – Customer interaction logs, FAQs, order-related queries, and user feedback.
+- Preprocessing – Cleaning, normalization, and structuring of raw text.
+- Contextual Knowledge Retrieval – Integrating customer history and domain knowledge (RAG-inspired).
+- Intent & Sentiment Recognition – NLP models detect customer intent, classify query type, and assess emotional tone.
+- Generate AI Response – Using Rasa Studio and transformer-based NLP to provide context-aware, empathetic replies.
+- Validation & Feedback Loop – Performance measured by precision, recall, F1-score; low-confidence cases escalated to human agents.
+  
 ## 🚀 Architecture Overview
 An NLP-based multi-channel customer support system that automates:
 - Intent classification (BERT fine-tuned model)
