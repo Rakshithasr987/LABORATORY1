@@ -1,4 +1,4 @@
-Current End-to-End Solution Perspective
+### Current End-to-End Solution Perspective
 Events go in → Quality insights come out
 Module	X (Input)	AI Processing Layer	Y (Output)
 1. Predictive Support Quality Modeling	Historical support data (ticket arrival rate, intent, tier, workload, backlog, past CSAT, sentiment, channel)	ML models — Random Forest, XGBoost, Neural Networks (Transformer encoders + MLP)	Predicted CSAT drop risk, SLA breach probability, expected resolution time.
