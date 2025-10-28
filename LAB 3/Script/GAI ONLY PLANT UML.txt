@@ -1,0 +1,146 @@
+@startuml
+title AI Customer Support System - Simplified BPMN
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+}
+skinparam note {
+  BackgroundColor #FEFBEA
+  BorderColor #CCCC99
+}
+
+start
+:Customer Support\nProcess Initiated;
+
+partition "Data Collection" {
+  :Customer Submits Query;
+  :Collect Multi-Channel Data;
+  note right
+    Sources: Chat, Email,
+    Social Media, CRM
+  end note
+  :Save to Repository;
+}
+
+partition "Preprocessing" {
+  fork
+    :Clean Text;
+    note right
+      Remove noise and
+      normalize format
+    end note
+  fork again
+    :Tokenize & Lemmatize;
+    note right
+      Break into tokens
+      and base forms
+    end note
+  fork again
+    :Detect Language;
+    note right
+      Auto-detect and
+      translate if needed
+    end note
+  end fork
+  :Merge Processed Data;
+}
+
+partition "AI Analysis" {
+  :Detect Intent & Sentiment;
+  note right
+    AI identifies customer need
+    and emotional state
+  end note
+  
+  if (Intent Clear?) then (Yes)
+    :Proceed to Response;
+  else (No)
+    :Enhance with Context;
+    note right
+      Query FAQ and
+      past interactions
+    end note
+  endif
+}
+
+partition "Response Generation" {
+  :Generate AI Response;
+  note right
+    LLM creates personalized
+    context-aware reply
+  end note
+  
+  :Evaluate Quality;
+  
+  if (Quality Acceptable?) then (No)
+    if (Should Escalate?) then (Yes)
+      :Route to Human Agent;
+      note right
+        Complex cases need
+        human expertise
+      end note
+      :Agent Responds;
+    else (No)
+      :Regenerate Response;
+      --> :Generate AI Response;
+    endif
+  else (Yes)
+    :Finalize Response;
+  endif
+}
+
+partition "Delivery" {
+  :Deliver to Customer;
+  note right
+    Send via original
+    channel (chat/email/social)
+  end note
+  
+  :Log Interaction;
+}
+
+partition "Feedback & Learning" {
+  fork
+    :Collect Feedback;
+    note left
+      CSAT, NPS,
+      comments
+    end note
+    
+    if (Satisfied?) then (Yes)
+      :Close Successfully;
+      stop
+    else (No)
+      :Request Re-evaluation;
+      --> :Collect Multi-Channel Data;
+    endif
+    
+  fork again
+    :Update Models;
+    note right
+      Retrain with new
+      interaction data
+    end note
+  end fork
+}
+
+partition "Analytics" {
+  :Calculate Metrics;
+  note right
+    Accuracy, CSAT, FCR,
+    Response Time
+  end note
+  
+  :Generate Report;
+  :Send Alerts if Needed;
+}
+
+:Process Completed;
+
+stop
+
+@enduml

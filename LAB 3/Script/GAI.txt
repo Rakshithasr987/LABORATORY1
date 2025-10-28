@@ -1,0 +1,266 @@
+@startuml
+title AI Agents in Customer Support Workflow
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #EAF6FF
+  BorderColor #336699
+  FontColor #000000
+  FontSize 12
+  FontStyle bold
+}
+skinparam note {
+  BackgroundColor #FEFBEA
+  BorderColor #CCCC99
+  FontColor #000000
+}
+
+start
+
+:AI Data Ingestion Agent;
+note right
+  📥 Collects multi-channel customer data
+  - Fetches chat logs from database
+  - Extracts email tickets from inbox
+  - Retrieves social media mentions
+  - Loads CRM customer history
+end note
+
+:AI Preprocessing Agent;
+note right
+  🧹 Cleans and normalizes text
+  - Detects and corrects spelling errors
+  - Tokenizes and lemmatizes text
+  - Removes stop words and noise
+  - Detects and translates language
+  - Extracts named entities (orders, products, dates)
+end note
+
+:AI Intent Detection Agent;
+note right
+  🎯 Identifies customer intent
+  - Classifies query type (tracking, refund, inquiry)
+  - Calculates confidence score
+  - Detects multiple intents if present
+  - Flags ambiguous queries
+end note
+
+:AI Sentiment Analysis Agent;
+note right
+  🧠 Analyzes emotional state
+  - Classifies sentiment (positive, neutral, negative)
+  - Detects urgency level
+  - Identifies emotional indicators (anger, frustration)
+  - Calculates priority score
+end note
+
+if (Intent recognized with high confidence?) then (No)
+  :AI Context Enhancement Agent;
+  note right
+    🔍 Enriches understanding
+    - Queries FAQ database
+    - Retrieves similar past tickets
+    - Searches product documentation
+    - Gathers additional customer context
+  end note
+  stop
+else (Yes)
+  :AI Context Retrieval Agent;
+  note right
+    📚 Gathers relevant knowledge
+    - Queries knowledge base using vector search
+    - Fetches customer order history from CRM
+    - Retrieves similar resolved cases
+    - Ranks context by relevance score
+    - Prepares context for response generation
+  end note
+endif
+
+:AI Response Generation Agent;
+note right
+  🤖 Creates personalized response
+  - Determines appropriate response type
+  - Generates response using GPT-3.5/GPT-4
+  - Adjusts tone based on sentiment
+  - Includes actionable next steps
+  - Adds relevant links and resources
+  - Validates for hallucinations
+end note
+
+:AI Quality Evaluation Agent;
+note right
+  ✅ Assesses response quality
+  - Calculates confidence score
+  - Checks intent-response alignment
+  - Validates context relevance
+  - Detects contradictions or errors
+  - Measures response completeness
+end note
+
+if (Response quality acceptable?) then (No)
+  :AI Escalation Decision Agent;
+  note right
+    🚨 Determines escalation need
+    - Calculates escalation score
+    - Considers sentiment (negative = higher priority)
+    - Checks VIP customer status
+    - Detects sensitive topics (legal, privacy)
+    - Evaluates query complexity
+    - Assesses order value
+  end note
+  
+  if (Should escalate to human?) then (Yes)
+    :AI Agent Routing Assistant;
+    note right
+      👥 Routes to best human agent
+      - Identifies required specialization
+      - Checks agent availability
+      - Matches language requirements
+      - Considers workload balance
+      - Estimates wait time
+    end note
+    
+    :AI Handoff Context Preparer;
+    note right
+      📋 Prepares agent briefing
+      - Summarizes conversation history
+      - Highlights key customer details
+      - Provides AI analysis results
+      - Suggests response approach
+      - Includes relevant documentation
+    end note
+    
+    :Human Agent Reviews and Responds;
+    
+    :AI Response Logger;
+    note right
+      📝 Records human intervention
+      - Logs escalation reason
+      - Stores final response
+      - Tags for model training
+      - Updates quality metrics
+    end note
+  else (No)
+    :AI Response Regeneration Agent;
+    note right
+      🔄 Retries with enhanced context
+      - Adjusts generation parameters
+      - Uses different prompt strategy
+      - Incorporates additional context
+      - Attempts alternative approach
+    end note
+    --> :AI Response Generation Agent;
+  endif
+else (Yes)
+  :AI Response Delivery Agent;
+  note right
+    📤 Sends response to customer
+    - Formats for target channel (chat/email/social)
+    - Adds tracking links if applicable
+    - Enables notifications
+    - Logs complete interaction
+    - Updates customer conversation history
+  end note
+endif
+
+fork
+  :AI Feedback Collection Agent;
+  note left
+    ⭐ Gathers customer satisfaction
+    - Requests CSAT rating (1-5 scale)
+    - Collects NPS score
+    - Solicits written feedback
+    - Asks if issue resolved
+    - Stores feedback in database
+  end note
+  
+  if (Customer satisfied?) then (No)
+    :AI Follow-up Coordinator;
+    note left
+      🔔 Triggers follow-up actions
+      - Notifies support manager
+      - Flags for quality review
+      - Considers re-escalation
+      - Tracks dissatisfaction trend
+    end note
+  else (Yes)
+    :AI Success Logger;
+    note left
+      ✅ Records successful resolution
+      - Marks interaction complete
+      - Updates success metrics
+      - Tags for positive training data
+    end note
+  endif
+  
+fork again
+  :AI Model Update Agent;
+  note right
+    🎓 Continuous learning system
+    - Collects interaction training data
+    - Identifies successful patterns
+    - Logs failed predictions
+    - Gathers human corrections
+    - Detects edge cases
+  end note
+  
+  :AI Model Retraining Agent;
+  note right
+    🔧 Improves AI models
+    - Retrains intent classifier
+    - Updates sentiment analyzer
+    - Fine-tunes response generator
+    - Validates model improvements
+    - Performs A/B testing
+  end note
+  
+  :AI Knowledge Base Updater;
+  note right
+    📚 Maintains knowledge repository
+    - Adds new FAQs
+    - Updates product information
+    - Archives outdated content
+    - Syncs with CRM updates
+    - Refreshes documentation links
+  end note
+end fork
+
+:AI Performance Analytics Agent;
+note right
+  📊 Evaluates system performance
+  - Calculates accuracy metrics (intent, sentiment)
+  - Tracks response time averages
+  - Measures first contact resolution (FCR)
+  - Analyzes customer satisfaction (CSAT, NPS)
+  - Monitors escalation rate
+  - Identifies trends and patterns
+  - Detects performance anomalies
+  - Generates executive reports
+end note
+
+:AI Alert Generator;
+note right
+  🚨 Sends proactive notifications
+  - Alerts on CSAT drop > 10%
+  - Notifies of response time spikes
+  - Warns of high escalation rates
+  - Flags model performance degradation
+  - Reports system errors
+end note
+
+:AI System Optimizer;
+note right
+  ⚙️ Auto-tunes configuration
+  - Adjusts confidence thresholds
+  - Updates escalation rules
+  - Refines response templates
+  - Optimizes resource allocation
+  - Balances workload distribution
+end note
+
+:Customer Support Process Completed;
+
+stop
+
+@enduml

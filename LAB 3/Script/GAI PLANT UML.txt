@@ -1,0 +1,156 @@
+@startuml
+' AI-Enhanced Customer Support Workflow - Activity diagram with swimlanes and GAI agents
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+  RoundCorner 15
+}
+
+title Customer Support Process Workflow (with GAI agents)
+
+start
+
+partition "Customer" {
+  :Customer Submits Support Query;
+}
+
+partition "System" {
+  :Identify and Collect Customer Interaction Data;
+  note right
+    Interactions Repository
+  end note
+  
+  :Preprocess Data;
+  note right
+    Data Store Repository
+  end note
+  
+  fork
+    :Clean and Normalize Text;
+  fork again
+    :Extract Customer Context;
+  fork again
+    :Analyze Query Structure;
+  end fork
+  
+  :Preprocessing Complete;
+  
+  :Detect Intent and Sentiment;
+  note right
+    Intent Repository
+  end note
+  
+  if (Is Intent Recognized?) then (Yes)
+    :Retrieve Contextual Knowledge;
+    note right
+      Knowledge Base Access
+    end note
+    
+    :Generate AI Response;
+    note right
+      Responses Repository
+    end note
+    
+    :Evaluate Response Accuracy;
+    
+    if (Is Response Acceptable?) then (Yes)
+      :Deliver Response to Customer;
+      note right
+        Output Generated
+      end note
+      :Capture Feedback;
+      note right
+        Feedback Repository
+      end note
+    else (No - Low Accuracy)
+      :Retrieve Contextual Knowledge;
+      note right
+        Re-fetch with enhanced context
+      end note
+      :Generate AI Response;
+      :Evaluate Response Accuracy;
+      :Deliver Response to Customer;
+      :Capture Feedback;
+      note right
+        Feedback Repository
+      end note
+    endif
+    
+  else (No)
+    :Retrieve Contextual Knowledge;
+    note right
+      Fallback Knowledge Retrieval
+    end note
+    :Generate AI Response;
+    :Deliver Response to Customer;
+    :Capture Feedback;
+    note right
+      Feedback Repository
+    end note
+  endif
+}
+
+partition "Continuous Learning" {
+  :Update Models;
+  note right
+    Models Repository
+  end note
+  
+  :Performance Evaluation & Learning;
+  note right
+    Metrics Generated
+  end note
+}
+
+partition "GAI Agents" {
+  floating note left
+    **GAI Data Collector**
+    Gathers customer interaction history
+    Extracts relevant profile & context data
+    Identifies query patterns
+    
+    **GAI Data Preprocessor**
+    Cleans and normalizes input text
+    Removes noise, standardizes format
+    Structures data for analysis
+    
+    **GAI Intent Analyzer**
+    Detects customer intent & sentiment
+    Classifies query type and urgency
+    Maps to solution categories
+    
+    **GAI Knowledge Retriever**
+    Searches knowledge base intelligently
+    Retrieves relevant documentation & FAQs
+    Ranks information by relevance
+    
+    **GAI Response Generator**
+    Creates contextual, personalized responses
+    Adapts tone to customer sentiment
+    Ensures clarity and completeness
+    
+    **GAI Quality Evaluator**
+    Assesses response accuracy & relevance
+    Checks for completeness and clarity
+    Flags low-confidence responses
+    
+    **GAI Feedback Analyzer**
+    Processes customer feedback
+    Identifies improvement areas
+    Tracks satisfaction metrics
+    
+    **GAI Model Optimizer**
+    Updates ML models with new data
+    Retrains based on feedback patterns
+    Optimizes performance continuously
+  end note
+}
+
+:Customer Support Process Completed;
+
+stop
+
+@enduml

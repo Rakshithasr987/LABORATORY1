@@ -1,0 +1,140 @@
+@startuml
+' Customer Support Process - AI-Enhanced Workflow
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+  RoundCorner 15
+}
+
+title Customer Support Process Workflow
+
+start
+
+partition "Customer" {
+  :Customer Submits Support Query;
+}
+
+partition "System" {
+  :Identify and Collect Customer Interaction Data;
+  note right
+    Interactions Repository
+  end note
+  
+  :Preprocess Data;
+  note right
+    Data Store Repository
+  end note
+  
+  fork
+    :Clean and Normalize Text;
+  fork again
+    :Extract Customer Context;
+  fork again
+    :Analyze Query Structure;
+  end fork
+  
+  :Preprocessing Complete;
+  
+  :Detect Intent and Sentiment;
+  note right
+    Intent Repository
+  end note
+  
+  if (Is Intent Recognized?) then (Yes)
+    :Retrieve Contextual Knowledge;
+    note right
+      Knowledge Base Access
+    end note
+    
+    :Generate AI Response;
+    note right
+      Responses Repository
+    end note
+    
+    :Evaluate Response Accuracy;
+    
+    if (Is Response Acceptable?) then (Yes)
+      :Deliver Response to Customer;
+      note right
+        Output Generated
+      end note
+      
+      :Capture Feedback;
+      note right
+        Feedback Repository
+      end note
+      
+      :Update Models;
+      note right
+        Models Repository
+      end note
+      
+      :Performance Evaluation & Learning;
+      note right
+        Metrics Generated
+      end note
+      stop
+      
+    else (No - Low Accuracy)
+      :Retrieve Contextual Knowledge;
+      note right
+        Enhanced Context Retrieval
+      end note
+      
+      :Generate AI Response;
+      
+      :Deliver Response to Customer;
+      
+      :Capture Feedback;
+      note right
+        Feedback Repository
+      end note
+      
+      :Update Models;
+      note right
+        Models Repository
+      end note
+      
+      :Performance Evaluation & Learning;
+      note right
+        Metrics Generated
+      end note
+      stop
+    endif
+    
+  else (No)
+    :Retrieve Contextual Knowledge;
+    note right
+      Fallback Knowledge Retrieval
+    end note
+    
+    :Generate AI Response;
+    
+    :Deliver Response to Customer;
+    
+    :Capture Feedback;
+    note right
+      Feedback Repository
+    end note
+    
+    :Update Models;
+    note right
+      Models Repository
+    end note
+    
+    :Performance Evaluation & Learning;
+    note right
+      Metrics Generated
+    end note
+    stop
+  endif
+}
+
+:Process Completed;
+
+stop
+
+@enduml

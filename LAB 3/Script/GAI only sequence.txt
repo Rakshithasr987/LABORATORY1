@@ -1,0 +1,164 @@
+@startuml
+
+title AI-Driven Customer Support Workflow (GAI Sequence)
+skinparam backgroundColor white
+
+skinparam shadowing false
+
+skinparam participant {
+
+BackgroundColor #EAF6FF
+
+BorderColor #336699
+
+}
+
+skinparam actorStyle awesome
+
+skinparam note {
+
+BackgroundColor #FEFBEA
+
+BorderColor #CCCC99
+
+}
+actor "Customer" as Customer
+
+participant "Customer Support System" as System
+
+participant "Data Processor" as Preprocessor
+
+participant "Intent Detector" as IntentAI
+
+participant "Context Retriever" as ContextAI
+
+participant "Response Generator" as ResponseAI
+
+participant "Evaluator" as Evaluator
+
+participant "Feedback Engine" as Feedback
+
+participant "Model Trainer" as Trainer
+
+database "Data Store" as DataRepo
+
+database "Knowledge Base" as KB
+
+database "Response Log" as RespDB
+
+database "Metrics Store" as Metrics
+== Customer Query ==
+
+Customer -> System : Submit Support Query
+
+System -> DataRepo : Log Customer Interaction Data
+
+System -> Preprocessor : Preprocess Interaction Data
+
+activate Preprocessor
+
+note right of Preprocessor
+
+Cleans, tokenizes, and structures\ncustomer text for analysis.
+
+end note
+
+Preprocessor --> System : Return Processed Data
+
+deactivate Preprocessor
+== Intent Detection ==
+
+System -> IntentAI : Detect Intent and Sentiment
+
+activate IntentAI
+
+IntentAI --> System : Return Intent & Sentiment
+
+deactivate IntentAI
+alt Intent Recognized
+
+System -> ContextAI : Retrieve Contextual Knowledge
+
+activate ContextAI
+
+note right of ContextAI
+
+Retrieves relevant historical data,\nFAQs, and policy information.
+
+end note
+
+ContextAI --> System : Contextual Data Retrieved
+
+deactivate ContextAI
+
+else Intent Not Recognized
+
+System -> ResponseAI : Generate Default AI Response
+
+activate ResponseAI
+
+ResponseAI --> RespDB : Store Generated Response
+
+deactivate ResponseAI
+
+end alt
+== Response Generation ==
+
+System -> ResponseAI : Generate AI Response (if context found)
+
+activate ResponseAI
+
+ResponseAI --> System : Return Draft Response
+
+deactivate ResponseAI
+== Evaluation ==
+
+System -> Evaluator : Evaluate Response Accuracy
+
+activate Evaluator
+
+note right of Evaluator
+
+Checks confidence score and\nresponse quality.
+
+end note
+
+Evaluator --> System : Return Accuracy Rating
+
+deactivate Evaluator
+alt Accuracy Acceptable
+
+System -> Customer : Deliver Response
+
+Customer --> System : Acknowledge Response
+
+else Accuracy Low
+
+System -> Feedback : Capture Feedback
+
+activate Feedback
+
+Feedback --> Trainer : Send Data for Model Update
+
+deactivate Feedback
+
+Trainer -> Metrics : Log Performance Metrics
+
+note right of Trainer
+
+Continuous learning and\nperformance improvement loop.
+
+end note
+
+Trainer --> System : Models Updated
+
+end alt
+== Completion ==
+
+note over Customer,Trainer
+
+AI-driven customer support\nquery resolution completed.
+
+end note
+@enduml
+ 
