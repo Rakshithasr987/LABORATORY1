@@ -1,15 +1,49 @@
-Research on Improving the Quality of Online Customer Support Using Artificial Intelligence
+### Research on Improving the Quality of Online Customer Support Using Artificial Intelligence
 
 Companies Best Suited for This Solution
 
-## Intercom:
-It’s designed around conversational support and live-chat first, with strong APIs and webhook support — ideal for plugging in an LLM + retrieval pipeline as the Smart Support Assistant (SSA) from your thesis.
+## 1. Intercom
 
-Your thesis calls for multi-channel ingestion (chat, email, social, CRM), retrieval-augmented generation (RAG), sentiment-aware response generation, and a human-in-the-loop escalation flow — Intercom’s architecture and app marketplace are well suited for that integration pattern. 
+Intercom is highly suited for academic research on AI-driven customer support because it provides a flexible, developer-friendly environment with real-time chat features and simple API integration. Its architecture makes it easy to embed custom NLP, LLM, and RAG pipelines, enabling rapid experimentation and evaluation of AI-generated responses in live or simulated support interactions.
 
-For an academic/industry deployment you can prototype quickly with Intercom’s developer tools, then scale to enterprise platforms (Zendesk / Salesforce) if the customer needs deeper ticketing, reporting, or org-wide CRM integration. The thesis explicitly recommends a modular pipeline (preprocessing → intent/sentiment → RAG → LLM → human fallback) — this fits Intercom’s extension model.
+Key Points:
 
-## Zendesk: excellent if the organization prioritizes ticketing and agent workflows; integrates well with knowledge base + LLMs.
+Flexible APIs and webhooks ideal for custom AI integration
+Real-time chat environment suited for measuring response quality
+Easy to prototype and test AI workflows end-to-end
+Supports hybrid AI + human agent models for evaluation
 
-## Salesforce Service Cloud: enterprise-grade CRM + automation — best if you must tightly integrate with sales/CRM records at scale.
-(Use Intercom for fastest prototype and clearer mapping to the SSA pipeline in your thesis; migrate to Zendesk/Salesforce for enterprise rollouts.)
+## 2. Zendesk
+
+Zendesk is a strong choice for studying AI enhancements in large-scale customer-support systems. It provides mature ticketing workflows, a robust knowledge base, and extensive historical data—making it ideal for experiments involving automated response generation, ticket routing, and knowledge retrieval using AI models.
+
+Key Points:
+
+Enterprise-grade ticketing and workflow automation
+Strong knowledge-base integration for RAG research
+Rich datasets useful for benchmarking AI models
+Supports human escalation and hybrid support workflows
+
+## 3. Salesforce Service Cloud
+
+Salesforce Service Cloud is well suited for AI research that requires personalized and context-aware assistance. With deep CRM integration and access to customer history, it allows researchers to explore advanced AI applications such as predictive support, personalized recommendations, and proactive issue resolution.
+
+Key Points:
+
+Deep CRM data supports personalized AI responses
+Built-in AI tools (Einstein) enhance experimentation
+Supports complex support workflows and automation
+Ideal for studying predictive and proactive AI support
+
+## 4. Freshdesk
+
+Freshdesk is a lightweight but capable support platform that works well for academic experimentation due to its simplicity and strong AI-readiness. It supports multichannel ticketing, sentiment analysis, chatbots, and automation, making it useful for testing NLP models, automated support flows, and sentiment-aware AI systems.
+
+Key Points:
+
+Simple integration ideal for rapid AI prototyping
+Built-in support for chatbots and automation
+
+Good platform for NLP and intent-classification studies
+
+Useful for controlled experiments in academic setups
